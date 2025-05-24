@@ -96,7 +96,7 @@ weights_memory: 6127.833 MB
 
 ###  🧪精度评估
 
- GSM8K（小学数学应用题）：
+- GSM8K（小学数学应用题）：
 
 ```bash
 lm-eval --model vllm \
@@ -113,7 +113,7 @@ lm-eval --model vllm \
 |     |       |strict-match    |     5|exact_match|↑  |0.6482|±  |0.0132|
 ```
 
- ARC-Challenge（科学选择题）：
+- ARC-Challenge（科学选择题）：
 
 ```bash
 lm-eval --model vllm \
