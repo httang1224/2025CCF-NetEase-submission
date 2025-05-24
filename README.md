@@ -47,8 +47,7 @@
 │   ├── acc.json
 │   └── perf.json
 │
-└── README.md                       # 项目说明文档
-				 
+└── README.md                       # 项目说明文档			 
 ```
 
 ---
@@ -134,13 +133,13 @@ lm-eval --model vllm \
 
 ## 🔧 6. 量化模型评估
 
-###  6.1 GPTQ 量化
+###  🛠️ GPTQ 量化
 
 ```bash
 python ./scripts/quant/GPTQ_v1.py
 ```
 
-### 6.2 量化评估
+### 📏 量化评估
 
 ```bash
 chmod +x ./scripts/eval/evaluate.sh (optional)
@@ -148,7 +147,7 @@ chmod +x ./scripts/eval/evaluate.sh (optional)
 ./scripts/eval/evaluate.sh ./models/Int8_gptq_v1
 ```
 
-### 6.3 AWQ 量化（TODO）
+### ⚙️ AWQ 量化（TODO）
 
 ```bash
 # TODO: 添加 AWQ 量化流程
