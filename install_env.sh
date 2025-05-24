@@ -19,10 +19,7 @@ pip install auto-gptq==0.7.1
 pip install datasets==2.17.0
 pip install vllm==0.7.1
 pip install lm-eval==0.4.8
+pip install huggingface_hub
 
 echo ""
 echo "所有依赖安装完成！"
-
-
-
-conda activate llm_compress
