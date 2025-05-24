@@ -112,6 +112,8 @@ lm-eval --model vllm \
 |     |       |strict-match    |     5|exact_match|↑  |0.6482|±  |0.0132|
 ```
 
+
+
 - ARC-Challenge（科学选择题）：
 
 ```bash
@@ -139,18 +141,20 @@ lm-eval --model vllm \
 python ./scripts/quant/GPTQ_v1.py
 ```
 
-### 📏 量化评估
+### 📏 AWQ 量化（TODO）
+
+```bash
+python ./scripts/quant/AWQ_v1.py
+```
+
+### ⚙️ 量化评估
 
 ```bash
 chmod +x ./scripts/eval/evaluate.sh (optional)
 
 ./scripts/eval/evaluate.sh ./models/Int8_gptq_v1
-```
-
-### ⚙️ AWQ 量化（TODO）
-
-```bash
-# TODO: 添加 AWQ 量化流程
+./scripts/eval/evaluate.sh ./models/Int4_gptq_v1
+./scripts/eval/evaluate.sh ./models/Int4_awq_v1
 ```
 
 ---
