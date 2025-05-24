@@ -2,30 +2,25 @@
 
 echo "?? 正在创建 Conda 环境：llm_compress"
 
-# 创建 Conda 环境
-conda create -n llmcompress python=3.9 -y
-
-# 初始化 Conda 环境（确保脚本中能使用 conda activate）
+# Conda 初始化
 source "$(conda info --base)/etc/profile.d/conda.sh"
-conda activate llmcompress
 
+# 判断环境是否已存在
+if conda env list | grep -q "llm_compress"; then
+  echo "?? 环境 llm_compress 已存在，跳过创建..."
+else
+  conda create -n llm_compress python=3.9 -y
+fi
+
+conda activate llm_compress
 echo "? Conda 环境已激活，开始安装依赖..."
 
-# 安装 PyTorch（CUDA 12.1）版本
+# 安装 PyTorch（注意兼容 vllm）
 pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu121
 
-# 安装其他 Python 依赖
-pip install auto-gptq==0.7.1
-pip install datasets==2.17.0
-pip install vllm==0.7.1
-pip install lm-eval==0.4.8
-pip install huggingface_hub
-
-pip install autoawq
-pip install nvitop
-pip install ipykernel
-pip install matplotlib
-pip install seaborn
+# 安装主要依赖
+pip install auto-gptq==0.7.1 datasets==2.17.0 vllm==0.7.1 \
+lm-eval==0.4.8 huggingface_hub autoawq nvitop ipykernel matplotlib seaborn
 
 echo ""
-echo "所有依赖安装完成！"
+echo "?? 所有依赖安装完成！建议运行 'python -c \"from vllm import LLM\"' 以验证环境是否正常。"
