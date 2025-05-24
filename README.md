@@ -1,16 +1,16 @@
 
 # 🚀 面向大规模预训练模型的小型化部署优化方法
 
-本项目旨在研究如何在保证精度的前提下，实现大模型在有限算力平台上的高效部署。我们以 **LLaMA-3.2-3B-Instruct** 为基准模型，采用 **GPTQ** 和 **AWQ** 进行量化压缩，并结合 `vLLM` 与 `lm-evaluation-harness` 工具，对模型在 **准确率与推理延迟** 两方面进行系统评估。
+本项目旨在研究如何在保证精度的前提下，实现大模型在有限算力平台上的高效部署。以 **LLaMA-3.2-3B-Instruct** 为基准模型，采用 **GPTQ** 和 **AWQ** 进行量化压缩，并结合 `vLLM` 与 `lm-evaluation-harness` 工具，对模型在 **准确率与推理延迟** 两方面进行系统评估。
 
 ---
 
 
 
-## 📊 1. 量化性能优化
+## 📊 1. 量化性能概览
 
 <p align="center">
-  <img src="./assets/gsm_arc.png" width="1000"/>
+  <img src="./assets/gsm_arc.png" width="750"/>
 </p>
 
 <p align="center">
@@ -24,37 +24,49 @@
 
 ```bash
 .
-├── scripts/benchmarks/            # 推理延迟评估
-│   ├── benchmark_latency.py
-│   └── benchmark_utils.py
+├── scripts/                         # 项目核心脚本
+│   ├── env/                         # 环境配置脚本
+│   │   └── install_env.sh
+│   │
+│   ├── eval/                        # 精度评估流程
+│   │   └── evaluate.sh
+│   │
+│   ├── benchmarks/                 # 推理延迟评估
+│   │   ├── benchmark_latency.py
+│   │   └── benchmark_utils.py
+│   │
+│   └── quant/                      # 模型量化实现
+│       ├── GPTQ_v1.py
+│       └── AWQ_v1.py
 │
-├── models/                        # 原始/量化模型存放目录
-│   └── Llama-3.2-3B-Instruct/
+├── models/                         # 原始与量化模型存储
+│   ├── Llama-3.2-3B-Instruct/
 │   └── Int4_gptq_v1/
 │
-├── outputs/                       # 精度与性能评估结果
+├── outputs/                        # 评估结果（精度/延迟）
 │   ├── acc.json
 │   └── perf.json
 │
-├── install_env.sh  				        
-└── evaluate.sh					 
+└── README.md                       # 项目说明文档
+				 
 ```
 
 ---
 
-## 🧱 3. 环境配置与依赖安装
+## 🧱 3. 环境配置
 
 ```bash
 git clone git@github.com:httang1224/2025CCF-NetEase-submission.git && cd 2025CCF-NetEase-submission
 
-chmod +x install_env.sh
-./install_env.sh
+chmod +x ./scripts/env/install_env.sh (optional)
+
+./scripts/env/install_env.sh
 conda activate llm_compress
 ```
 
 ---
 
-## 📦 4. 原始模型下载与准备
+## 📦 4. 模型下载
 
 ```bash
 export HF_ENDPOINT=https://hf-mirror.com
@@ -68,7 +80,7 @@ huggingface-cli download --token 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 --resume-
 
 ## 🔬 5. 原始模型性能基准评估
 
-### ⏱️ 5.1 推理延迟评估
+### ⏱️ 推理延迟评估
 
 ```bash
 python3 ./benchmarks/benchmark_latency.py \
@@ -82,9 +94,9 @@ TPOT: 0.015 seconds
 weights_memory: 6127.833 MB
 ```
 
-### 🧪 5.2 精度评估
+###  🧪精度评估
 
-#### 📘 GSM8K：小学数学应用题
+ GSM8K（小学数学应用题）：
 
 ```bash
 lm-eval --model vllm \
@@ -101,7 +113,7 @@ lm-eval --model vllm \
 |     |       |strict-match    |     5|exact_match|↑  |0.6482|±  |0.0132|
 ```
 
-#### 🧪 ARC-Challenge：科学选择题
+ ARC-Challenge（科学选择题）：
 
 ```bash
 lm-eval --model vllm \
@@ -122,20 +134,21 @@ lm-eval --model vllm \
 
 ## 🔧 6. 量化模型评估
 
-### ⚙️ 6.1 使用 GPTQ 进行量化
+###  6.1 GPTQ 量化
 
 ```bash
-python GPTQ_v1.py
+python ./scripts/quant/GPTQ_v1.py
 ```
 
-### 🧪 6.2 量化模型精度评估
+### 6.2 量化评估
 
 ```bash
-chmod +x evaluate.sh
-./evaluate.sh ./models/Int8_gptq_v1
+chmod +x ./scripts/eval/evaluate.sh (optional)
+
+./scripts/eval/evaluate.sh ./models/Int8_gptq_v1
 ```
 
-### 🛠️ 6.3 使用 AWQ 进行量化（waiting）
+### 6.3 AWQ 量化（TODO）
 
 ```bash
 # TODO: 添加 AWQ 量化流程
@@ -145,31 +158,31 @@ chmod +x evaluate.sh
 
 ## 🏆 7. 比赛评分指标说明
 
-### 🎯 7.1 精度指标（Accuracy）
+### 🎯 精度指标
 
 模型在 `ARC-Challenge` 与 `GSM8K` 任务上的平均得分：
 
-- 📊 **参考基线**：原始模型分数（LLaMA-3.2-3B-Instruct）
-- 🚀 **优化目标**：你优化后的压缩模型得分
+- **参考基线**：原始模型分数（LLaMA-3.2-3B-Instruct）
+- **优化目标**：你优化后的压缩模型得分
 
-### ⚡ 7.2 性能指标（Efficiency）
+### ⚡ 性能指标
 
-- 📉 模型压缩率（模型文件体积对比）
-- ⚡ 推理速度提升：
+-  模型压缩率（模型文件体积对比）
+- 推理速度提升：
   - TTFT（Time to First Token）
   - TPOT（Time Per Output Token）
 
 所有性能指标相较原始模型进行比值计算。
 
-### 🧮 7.3 总分计算方式
+### 🧮 总评分计算
 
-> 所有指标将归一化后加权求和，作为最终得分。
+> 精度与性能指标将归一化加权，构成最终得分。
 
 ---
 
 ## 🖥️ 8. 实验硬件说明
 
-> ⚠️ 官方推荐使用 RTX 4090，但本页评估结果基于 **NVIDIA A40 48GB**。
+> ⚠️ 当前实验评估结果基于 **NVIDIA A40 48GB**，官方推荐配置为 RTX 4090。
 
 ---
 
