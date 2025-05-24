@@ -1,3 +1,4 @@
+
 # 🚀 面向大规模预训练模型的小型化部署优化方法研究
 
 本项目旨在研究如何在保证精度的前提下，实现大模型在有限算力平台上的高效部署。我们以 **LLaMA-3.2-3B-Instruct** 为基准模型，采用 **GPTQ** 和 **AWQ** 进行量化压缩，并结合 `vLLM` 与 `lm-evaluation-harness` 工具，对模型在 **准确率与推理延迟** 两方面进行系统评估。
@@ -14,19 +15,22 @@
 
 ## 🗂️ 2. 项目结构
 
-```text
+```
 .
-├── benchmarks/                    # 🚦 推理延迟评估脚本
+├── scripts/benchmarks/            # 推理延迟评估
 │   ├── benchmark_latency.py
 │   └── benchmark_utils.py
-├── models/                        # 🧠 原始/量化模型存放目录
+│
+├── models/                        # 原始/量化模型存放目录
 │   └── Llama-3.2-3B-Instruct/
-├── outputs/                       # 📁 精度与性能评估结果
+│   └── Int4_gptq_v1/
+│
+├── outputs/                       # 精度与性能评估结果
 │   ├── acc.json
 │   └── perf.json
-├── scripts/                       # 🛠️ 环境部署、模型下载脚本
-│   └── install_env.sh
-└── ...
+│
+├── install_env.sh                 # 部署  
+└── evaluate.sh					   # 评估
 ```
 
 ---
@@ -48,7 +52,7 @@ conda activate llm_compress
 ```bash
 export HF_ENDPOINT=https://hf-mirror.com
 
-huggingface-cli download --token <your_token> --resume-download \
+huggingface-cli download --token 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 --resume-download \
   meta-llama/Llama-3.2-3B-Instruct \
   --local-dir ./models/Llama-3.2-3B-Instruct
 ```
@@ -84,10 +88,10 @@ lm-eval --model vllm \
 ```
 
 ```
-|Tasks|Version|Filter|n-shot|Metric| |Value| |Stderr|
-|-----|------:|------|-----:|------|-|-----:|-|------:|
-|gsm8k|     3 |flexible-extract|5|exact_match|↑|0.6543|±|0.0131|
-|     |       |strict-match    |5|exact_match|↑|0.6482|±|0.0132|
+|Tasks|Version|     Filter     |n-shot|  Metric   |   |Value |   |Stderr|
+|-----|------:|----------------|-----:|-----------|---|-----:|---|-----:|
+|gsm8k|      3|flexible-extract|     5|exact_match|↑  |0.0205|±  |0.0039|
+|     |       |strict-match    |     5|exact_match|↑  |0.0000|±  |0.0000|
 ```
 
 #### 🧪 ARC-Challenge：科学选择题
@@ -124,7 +128,7 @@ chmod +x evaluate.sh
 ./evaluate.sh ./models/Int8_gptq_v1
 ```
 
-### 🛠️ 6.3 使用 AWQ 进行量化（开发中）
+### 🛠️ 6.3 使用 AWQ 进行量化（waiting）
 
 ```bash
 # TODO: 添加 AWQ 量化流程
