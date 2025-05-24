@@ -36,8 +36,8 @@
 │   ├── acc.json
 │   └── perf.json
 │
-├── install_env.sh				# 安装环境   				        
-└── evaluate.sh					# 量化评估				 
+├── install_env.sh  				        
+└── evaluate.sh					 
 ```
 
 ---
