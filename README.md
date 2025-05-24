@@ -29,8 +29,8 @@
 │   ├── acc.json
 │   └── perf.json
 │
-├── install_env.sh                 # 部署  
-└── evaluate.sh					   # 评估
+├── install_env.sh             
+└── evaluate.sh					 
 ```
 
 ---
@@ -40,6 +40,7 @@
 ```bash
 git clone git@github.com:httang1224/2025CCF-NetEase-submission.git
 cd 2025CCF-NetEase-submission
+
 chmod +x install_env.sh
 ./install_env.sh
 conda activate llm_compress
@@ -70,6 +71,8 @@ python3 ./benchmarks/benchmark_latency.py \
 ```
 
 ```
+# result
+
 TTFT: 0.2929 s
 TPOT: 0.0151 s
 weights_memory: 6127.83 MB
@@ -88,6 +91,8 @@ lm-eval --model vllm \
 ```
 
 ```
+# result
+
 |Tasks|Version|     Filter     |n-shot|  Metric   |   |Value |   |Stderr|
 |-----|------:|----------------|-----:|-----------|---|-----:|---|-----:|
 |gsm8k|      3|flexible-extract|     5|exact_match|↑  |0.0205|±  |0.0039|
@@ -105,6 +110,8 @@ lm-eval --model vllm \
 ```
 
 ```
+# result
+
 |    Tasks    |Version|Filter|n-shot| Metric |   |Value |   |Stderr|
 |-------------|------:|------|-----:|--------|---|-----:|---|-----:|
 |arc_challenge|      1|none  |     0|acc     |↑  |0.4352|±  |0.0145|
