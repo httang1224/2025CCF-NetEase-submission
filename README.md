@@ -78,9 +78,9 @@ python3 ./benchmarks/benchmark_latency.py \
 ```
 
 ```
-TTFT: 0.2929 s
-TPOT: 0.0151 s
-weights_memory: 6127.83 MB
+TTFT: 0.292 seconds
+TPOT: 0.015 seconds
+weights_memory: 6127.833 MB
 ```
 
 ### 🧪 5.2 精度评估
@@ -98,8 +98,8 @@ lm-eval --model vllm \
 ```
 |Tasks|Version|     Filter     |n-shot|  Metric   |   |Value |   |Stderr|
 |-----|------:|----------------|-----:|-----------|---|-----:|---|-----:|
-|gsm8k|      3|flexible-extract|     5|exact_match|↑  |0.0205|±  |0.0039|
-|     |       |strict-match    |     5|exact_match|↑  |0.0000|±  |0.0000|
+|gsm8k|      3|flexible-extract|     5|exact_match|↑  |0.6543|±  |0.0131|
+|     |       |strict-match    |     5|exact_match|↑  |0.6482|±  |0.0132|
 ```
 
 #### 🧪 ARC-Challenge：科学选择题
