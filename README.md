@@ -45,8 +45,7 @@
 ## 🧱 3. 环境配置与依赖安装
 
 ```bash
-git clone git@github.com:httang1224/2025CCF-NetEase-submission.git
-cd 2025CCF-NetEase-submission
+git clone git@github.com:httang1224/2025CCF-NetEase-submission.git && cd 2025CCF-NetEase-submission
 
 chmod +x install_env.sh
 ./install_env.sh

@@ -7,7 +7,7 @@ conda create -n llmcompress python=3.9 -y
 
 # 初始化 Conda 环境（确保脚本中能使用 conda activate）
 source "$(conda info --base)/etc/profile.d/conda.sh"
-conda activate llm_compress
+conda activate llmcompress
 
 echo "? Conda 环境已激活，开始安装依赖..."
 
@@ -20,6 +20,12 @@ pip install datasets==2.17.0
 pip install vllm==0.7.1
 pip install lm-eval==0.4.8
 pip install huggingface_hub
+
+pip install autoawq
+pip install nvitop
+pip install ipykernel
+pip install matplotlib
+pip install seaborn
 
 echo ""
 echo "所有依赖安装完成！"
