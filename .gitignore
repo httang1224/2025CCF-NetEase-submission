@@ -4,4 +4,6 @@ models/**
 !models/
 !models/Llama-3.2-3B-Instruct/
 !models/Llama-3.2-3B-Instruct/.gitkeep
+!models/Int4_gptq_v1/
+!models/Int4_gptq_v1/.gitkeep
 
