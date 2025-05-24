@@ -1,26 +1,30 @@
 #!/bin/bash
 
-echo "?? 正在创建 Conda 环境：llm_compress"
+# Default conda environment name
+ENV_NAME=${1:-llm_compress}
 
-# Conda 初始化
+echo ">>> Creating Conda environment: $ENV_NAME"
+
+# Conda initialization
 source "$(conda info --base)/etc/profile.d/conda.sh"
 
-# 判断环境是否已存在
-if conda env list | grep -q "llm_compress"; then
-  echo "?? 环境 llm_compress 已存在，跳过创建..."
+# Check if the environment already exists
+if conda env list | grep -q "$ENV_NAME"; then
+  echo ">>> Environment '$ENV_NAME' already exists. Skipping creation."
 else
-  conda create -n llm_compress python=3.9 -y
+  conda create -n "$ENV_NAME" python=3.9 -y
 fi
 
-conda activate llm_compress
-echo "? Conda 环境已激活，开始安装依赖..."
+# Activate the environment
+conda activate "$ENV_NAME"
+echo ">>> Conda environment '$ENV_NAME' activated. Installing dependencies..."
 
-# 安装 PyTorch（注意兼容 vllm）
+# Install PyTorch (ensure vLLM compatibility)
 pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu121
 
-# 安装主要依赖
+# Install main dependencies
 pip install auto-gptq==0.7.1 datasets==2.17.0 vllm==0.7.1 \
 lm-eval==0.4.8 huggingface_hub autoawq nvitop ipykernel matplotlib seaborn
 
 echo ""
-echo "?? 所有依赖安装完成！建议运行 'python -c \"from vllm import LLM\"' 以验证环境是否正常。"
+echo ">>> All dependencies installed. Try running: python -c \"from vllm import LLM\" to verify."
