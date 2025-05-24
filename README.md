@@ -71,8 +71,6 @@ python3 ./benchmarks/benchmark_latency.py \
 ```
 
 ```
-# result
-
 TTFT: 0.2929 s
 TPOT: 0.0151 s
 weights_memory: 6127.83 MB
@@ -91,8 +89,6 @@ lm-eval --model vllm \
 ```
 
 ```
-# result
-
 |Tasks|Version|     Filter     |n-shot|  Metric   |   |Value |   |Stderr|
 |-----|------:|----------------|-----:|-----------|---|-----:|---|-----:|
 |gsm8k|      3|flexible-extract|     5|exact_match|↑  |0.0205|±  |0.0039|
@@ -110,8 +106,6 @@ lm-eval --model vllm \
 ```
 
 ```
-# result
-
 |    Tasks    |Version|Filter|n-shot| Metric |   |Value |   |Stderr|
 |-------------|------:|------|-----:|--------|---|-----:|---|-----:|
 |arc_challenge|      1|none  |     0|acc     |↑  |0.4352|±  |0.0145|
