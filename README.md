@@ -5,8 +5,9 @@
 ## 1. 量化性能
 
 <p align="center">
-  <img src="assets/gsm_arc.png.png" width="600"/>
+  <img src="./scripts/assets/gsm_arc.png" width="600"/>
 </p>
+
 
 
 ---
