@@ -13,11 +13,15 @@
   <img src="./assets/gsm_arc.png" width="750"/>
 </p>
 
+|    Model    | AVG (%) |
+| :---------: | :-----: |
+|    LLaMA    |  54.90  |
+| 0526-1_INT4 |  54.43  |
+| 0519-3_INT4 |  54.22  |
+| 0515-1_INT8 |  48.53  |
 <p align="center">
   <em>🧪  <strong>To be continued ...</strong></em>
 </p>
-
-
 ---
 
 ## 🗂️ 2. 项目结构
