@@ -12,16 +12,31 @@
 <p align="center">
   <img src="./assets/gsm_arc.png" width="750"/>
 </p>
-
 <div align="center">
-|  Model  | 0515-1_INT8 | 0519-3_INT4 | 0526-1_INT4 | LLaMA |
-| :-----: | :---------: | :---------: | :---------: | :---: |
-| AVG (%) |    48.53    |    54.22    |    54.43    | 54.90 |
-</div>
-
+<table>
+  <thead>
+    <tr>
+      <th>Model</th>
+      <th>0515-1_INT8</th>
+      <th>0519-3_INT4</th>
+      <th>0526-1_INT4</th>
+      <th>LLaMA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>AVG (%)</strong></td>
+      <td>48.53</td>
+      <td>54.22</td>
+      <td>54.43</td>
+      <td>54.90</td>
+    </tr>
+  </tbody>
+</table>
 <p align="center">
   <em>🧪  <strong>To be continued ...</strong></em>
 </p>
+
 
 ---
 
