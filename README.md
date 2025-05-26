@@ -12,7 +12,6 @@
 <p align="center">
   <img src="./assets/gsm_arc.png" width="750"/>
 </p>
-<div align="center">
 <table>
   <thead>
     <tr>
@@ -36,6 +35,7 @@
 <p align="center">
   <em>🧪  <strong>To be continued ...</strong></em>
 </p>
+
 
 
 ---
