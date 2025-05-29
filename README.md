@@ -37,6 +37,16 @@
 </p>
 
 
+```bash
+# 最佳量化模型路径
+./Model/s521_int4_Llama-3.2-3B-Instruct/
+
+# 最佳模型评估范式
+./scripts/eval/evaluate.sh ./Model/s521_int4_Llama-3.2-3B-Instruct/
+```
+
+结果评估范式：
+
 
 ---
 
