@@ -77,7 +77,7 @@ https://pan.baidu.com/s/1r5helW7evDUWNB7SM-Hqmw?pwd=1224 提取码: 1224
 │   └── Int4_gptq_v1/
 │   └── s521_int4_Llama-3.2-3B-Instruct/    # best quan
 │
-├── outputs/                        	# 量化后模型评估（精度/延迟）
+├── outputs/                        	# 评估结果（精度/延迟）
 │   └── s521_int4_Llama-3.2-3B-Instruct/
 │   	├── latent.json
 │   	├── gsm8k.json
@@ -191,6 +191,8 @@ chmod +x ./scripts/eval/evaluate.sh (optional)
 ./scripts/eval/evaluate.sh ./models/Int8_gptq_v1
 ./scripts/eval/evaluate.sh ./models/Int4_gptq_v1
 ./scripts/eval/evaluate.sh ./models/Int4_awq_v1
+
+./scripts/eval/evaluate.sh ./models/s521_int4_Llama-3.2-3B-Instruct/
 ```
 
 ---
