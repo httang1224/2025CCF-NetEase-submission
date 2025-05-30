@@ -39,10 +39,13 @@
 
 ```bash
 # 最佳量化模型路径
-./Model/s521_int4_Llama-3.2-3B-Instruct/
+./models/s521_int4_Llama-3.2-3B-Instruct/
 
-# 最佳模型评估范式
-./scripts/eval/evaluate.sh ./Model/s521_int4_Llama-3.2-3B-Instruct/
+# 模型权重百度网盘下载链接
+https://pan.baidu.com/s/1r5helW7evDUWNB7SM-Hqmw?pwd=1224 提取码: 1224 
+
+# 量化模型评估范式
+./scripts/eval/evaluate.sh ./models/s521_int4_Llama-3.2-3B-Instruct/
 ```
 
 结果评估范式：
