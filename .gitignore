@@ -7,4 +7,4 @@ models/**
 !models/Int4_gptq_v1/
 !models/Int4_gptq_v1/.gitkeep
 !models/s521_int4_Llama-3.2-3B-Instruct/
-!models/s521_int4_Llama-3.2-3B-Instruct/.gitkee
+!models/s521_int4_Llama-3.2-3B-Instruct/.gitkeep
