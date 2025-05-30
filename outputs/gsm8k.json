@@ -1,0 +1,154 @@
+{
+  "results": {
+    "gsm8k": {
+      "alias": "gsm8k",
+      "exact_match,strict-match": 0.6376042456406369,
+      "exact_match_stderr,strict-match": 0.013240654263574762,
+      "exact_match,flexible-extract": 0.6383623957543594,
+      "exact_match_stderr,flexible-extract": 0.013234658351088766
+    }
+  },
+  "group_subtasks": {
+    "gsm8k": []
+  },
+  "configs": {
+    "gsm8k": {
+      "task": "gsm8k",
+      "tag": [
+        "math_word_problems"
+      ],
+      "dataset_path": "gsm8k",
+      "dataset_name": "main",
+      "training_split": "train",
+      "test_split": "test",
+      "fewshot_split": "train",
+      "doc_to_text": "Question: {{question}}\nAnswer:",
+      "doc_to_target": "{{answer}}",
+      "unsafe_code": false,
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "num_fewshot": 5,
+      "metric_list": [
+        {
+          "metric": "exact_match",
+          "aggregation": "mean",
+          "higher_is_better": true,
+          "ignore_case": true,
+          "ignore_punctuation": false,
+          "regexes_to_ignore": [
+            ",",
+            "\\$",
+            "(?s).*#### ",
+            "\\.$"
+          ]
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "Question:",
+          "</s>",
+          "<|im_end|>"
+        ],
+        "do_sample": false,
+        "temperature": 0.0
+      },
+      "repeats": 1,
+      "filter_list": [
+        {
+          "name": "strict-match",
+          "filter": [
+            {
+              "function": "regex",
+              "regex_pattern": "#### (\\-?[0-9\\.\\,]+)"
+            },
+            {
+              "function": "take_first"
+            }
+          ]
+        },
+        {
+          "name": "flexible-extract",
+          "filter": [
+            {
+              "function": "regex",
+              "group_select": -1,
+              "regex_pattern": "(-?[$0-9.,]{2,})|(-?[0-9]+)"
+            },
+            {
+              "function": "take_first"
+            }
+          ]
+        }
+      ],
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 3.0
+      }
+    }
+  },
+  "versions": {
+    "gsm8k": 3.0
+  },
+  "n-shot": {
+    "gsm8k": 5
+  },
+  "higher_is_better": {
+    "gsm8k": {
+      "exact_match": true
+    }
+  },
+  "n-samples": {
+    "gsm8k": {
+      "original": 1319,
+      "effective": 1319
+    }
+  },
+  "config": {
+    "model": "vllm",
+    "model_args": "pretrained=/home/u2024030061/ht/hf_weight/seed_search/awq3_/s521_int4_Llama-3.2-3B-Instruct,gpu_memory_utilization=0.6,dtype=auto",
+    "batch_size": "auto:1",
+    "batch_sizes": [],
+    "device": null,
+    "use_cache": null,
+    "limit": null,
+    "bootstrap_iters": 100000,
+    "gen_kwargs": null,
+    "random_seed": 0,
+    "numpy_seed": 1234,
+    "torch_seed": 1234,
+    "fewshot_seed": 1234
+  },
+  "git_hash": null,
+  "date": 1748529848.3787167,
+  "pretty_env_info": "PyTorch version: 2.5.1+cu121\nIs debug build: False\nCUDA used to build PyTorch: 12.1\nROCM used to build PyTorch: N/A\n\nOS: Ubuntu 20.04.6 LTS (x86_64)\nGCC version: (Ubuntu 9.4.0-1ubuntu1~20.04.3) 9.4.0\nClang version: Could not collect\nCMake version: version 3.16.3\nLibc version: glibc-2.31\n\nPython version: 3.9.21 (main, Dec 11 2024, 16:24:11)  [GCC 11.2.0] (64-bit runtime)\nPython platform: Linux-4.18.0-80.7.1.el8_0.x86_64-x86_64-with-glibc2.31\nIs CUDA available: True\nCUDA runtime version: Could not collect\nCUDA_MODULE_LOADING set to: LAZY\nGPU models and configuration: GPU 0: NVIDIA A40\nNvidia driver version: 525.60.13\ncuDNN version: Could not collect\nHIP runtime version: N/A\nMIOpen runtime version: N/A\nIs XNNPACK available: True\n\nCPU:\nArchitecture:                    x86_64\nCPU op-mode(s):                  32-bit, 64-bit\nByte Order:                      Little Endian\nAddress sizes:                   46 bits physical, 57 bits virtual\nCPU(s):                          56\nOn-line CPU(s) list:             0-55\nThread(s) per core:              1\nCore(s) per socket:              28\nSocket(s):                       2\nNUMA node(s):                    2\nVendor ID:                       GenuineIntel\nCPU family:                      6\nModel:                           106\nModel name:                      Intel(R) Xeon(R) Gold 6348 CPU @ 2.60GHz\nStepping:                        6\nFrequency boost:                 enabled\nCPU MHz:                         1982.213\nCPU max MHz:                     3500.0000\nCPU min MHz:                     800.0000\nBogoMIPS:                        5200.00\nVirtualization:                  VT-x\nL1d cache:                       2.6 MiB\nL1i cache:                       1.8 MiB\nL2 cache:                        70 MiB\nL3 cache:                        84 MiB\nNUMA node0 CPU(s):               0-27\nNUMA node1 CPU(s):               28-55\nVulnerability L1tf:              Not affected\nVulnerability Mds:               Not affected\nVulnerability Meltdown:          Not affected\nVulnerability Spec store bypass: Mitigation; Speculative Store Bypass disabled via prctl and seccomp\nVulnerability Spectre v1:        Mitigation; __user pointer sanitization\nVulnerability Spectre v2:        Mitigation; Enhanced IBRS, IBPB conditional, RSB filling\nFlags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb cat_l3 invpcid_single ssbd mba ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb intel_pt avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local wbnoinvd dtherm ida arat pln pts avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg tme avx512_vpopcntdq la57 rdpid md_clear pconfig flush_l1d arch_capabilities\n\nVersions of relevant libraries:\n[pip3] numpy==1.26.3\n[pip3] torch==2.5.1+cu121\n[pip3] torchaudio==2.5.1\n[pip3] torchvision==0.20.1+cu121\n[pip3] triton==3.1.0\n[conda] _anaconda_depends         2023.09             py311_mkl_1    https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main\n[conda] blas                      1.0                         mkl    https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main\n[conda] mkl                       2023.1.0         h213fc3f_46344    https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main\n[conda] mkl-service               2.4.0           py311h5eee18b_1    https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main\n[conda] mkl_fft                   1.3.8           py311h5eee18b_0    https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main\n[conda] mkl_random                1.2.4           py311hdb19cb5_0    https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main\n[conda] numpy                     1.26.2          py311h08b1b3b_0    https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main\n[conda] numpy-base                1.26.2          py311hf175353_0    https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main\n[conda] numpydoc                  1.5.0           py311h06a4308_0    https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main",
+  "transformers_version": "4.51.3",
+  "upper_git_hash": null,
+  "tokenizer_pad_token": [
+    "<|eot_id|>",
+    "128009"
+  ],
+  "tokenizer_eos_token": [
+    "<|eot_id|>",
+    "128009"
+  ],
+  "tokenizer_bos_token": [
+    "<|begin_of_text|>",
+    "128000"
+  ],
+  "eot_token_id": 128009,
+  "max_length": 131072,
+  "task_hashes": {},
+  "model_source": "vllm",
+  "model_name": "/home/u2024030061/ht/hf_weight/seed_search/awq3_/s521_int4_Llama-3.2-3B-Instruct",
+  "model_name_sanitized": "__home__u2024030061__ht__hf_weight__seed_search__awq3___s521_int4_Llama-3.2-3B-Instruct",
+  "system_instruction": null,
+  "system_instruction_sha": null,
+  "fewshot_as_multiturn": false,
+  "chat_template": null,
+  "chat_template_sha": null,
+  "start_time": 1474252.294793605,
+  "end_time": 1474553.424818975,
+  "total_evaluation_time_seconds": "301.13002536981367"
+}
