@@ -177,7 +177,7 @@ lm-eval --model vllm \
 python ./scripts/quant/GPTQ_v1.py
 ```
 
-### 📏 AWQ 量化（TODO）
+### 📏 AWQ 量化
 
 ```bash
 python ./scripts/quant/AWQ_v1.py
