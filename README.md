@@ -106,7 +106,7 @@ conda activate llm_compress
 ```bash
 export HF_ENDPOINT=https://hf-mirror.com
 
-huggingface-cli download --token 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 --resume-download \
+huggingface-cli download --token hf_*** --resume-download \
   meta-llama/Llama-3.2-3B-Instruct \
   --local-dir ./models/Llama-3.2-3B-Instruct
 ```
