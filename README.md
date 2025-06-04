@@ -75,7 +75,7 @@ https://pan.baidu.com/s/1r5helW7evDUWNB7SM-Hqmw?pwd=1224 提取码: 1224
 ├── models/                         # 原始与量化模型
 │   ├── Llama-3.2-3B-Instruct/
 │   └── Int4_gptq_v1/
-│   └── s521_int4_Llama-3.2-3B-Instruct/    # best quan
+│   └── s521_int4_Llama-3.2-3B-Instruct/    # best
 │
 ├── outputs/                        	# 评估结果（精度/延迟）
 │   └── s521_int4_Llama-3.2-3B-Instruct/
@@ -95,7 +95,7 @@ git clone git@github.com:httang1224/2025CCF-NetEase-submission.git && cd 2025CCF
 
 chmod +x ./scripts/env/install_env.sh (optional)
 
-./scripts/env/install_env.sh
+./scripts/env/install_env.sh llm_compress
 conda activate llm_compress
 ```
 
