@@ -19,6 +19,7 @@
       <th>0515-1_INT8</th>
       <th>0519-3_INT4</th>
       <th>0526-1_INT4</th>
+      <th>0605-1_INT4</th>
       <th>LLaMA</th>
     </tr>
   </thead>
@@ -28,13 +29,15 @@
       <td>48.53</td>
       <td>54.22</td>
       <td>54.43</td>
-      <td>54.90</td>
+      <td>54.45</td>
+      <td>54.90</td>  
     </tr>
   </tbody>
 </table>
 <p align="center">
   <em>🧪  <strong>To be continued ...</strong></em>
 </p>
+
 
 
 ```bash
