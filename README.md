@@ -41,14 +41,15 @@
 
 
 ```bash
+# 更新时间 2025年6月5日20:22:16
 # 最佳量化模型路径
-./models/s521_int4_Llama-3.2-3B-Instruct/
+./models/s961_int4_Llama-3.2-3B-Instruct/
 
 # 模型权重百度网盘下载链接
-https://pan.baidu.com/s/1r5helW7evDUWNB7SM-Hqmw?pwd=1224 提取码: 1224 
+https://pan.baidu.com/s/1XugFga2leGdZrHf1y8jZxQ?pwd=1224
 
 # 量化模型评估范式
-./scripts/eval/evaluate.sh ./models/s521_int4_Llama-3.2-3B-Instruct/
+./scripts/eval/evaluate.sh ./models/s961_int4_Llama-3.2-3B-Instruct/
 ```
 
 
@@ -78,7 +79,8 @@ https://pan.baidu.com/s/1r5helW7evDUWNB7SM-Hqmw?pwd=1224 提取码: 1224
 ├── models/                         # 原始与量化模型
 │   ├── Llama-3.2-3B-Instruct/
 │   └── Int4_gptq_v1/
-│   └── s521_int4_Llama-3.2-3B-Instruct/    # best
+│   └── s521_int4_Llama-3.2-3B-Instruct/    
+│   └── s961_int4_Llama-3.2-3B-Instruct/    # best
 │
 ├── outputs/                        	# 评估结果（精度/延迟）
 │   └── s521_int4_Llama-3.2-3B-Instruct/
@@ -196,6 +198,7 @@ chmod +x ./scripts/eval/evaluate.sh (optional)
 ./scripts/eval/evaluate.sh ./models/Int4_awq_v1
 
 ./scripts/eval/evaluate.sh ./models/s521_int4_Llama-3.2-3B-Instruct/
+./scripts/eval/evaluate.sh ./models/s961_int4_Llama-3.2-3B-Instruct/
 ```
 
 ---
