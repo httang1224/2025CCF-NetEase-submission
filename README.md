@@ -1,6 +1,7 @@
 
 # 🚀 面向大规模预训练模型的小型化部署优化方法
 https://www.ccf.org.cn/Collaboration/Enterprise_Fund/News/wy/2025-04-11/841153.shtml
+
 本项目旨在研究如何在保证精度的前提下，实现大模型在有限算力平台上的高效部署。以 **LLaMA-3.2-3B-Instruct** 为基准模型，分别采用了 **GPTQ** 和 **AWQ** 进行量化压缩，并结合 `vLLM` 与 `lm-evaluation-harness` 工具，对模型在 **准确率与推理延迟** 两方面进行系统评估。
 
 ---
